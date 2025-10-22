@@ -169,9 +169,16 @@ function division(a, b){
 	return a / b
 }
 
-function 
+function faculty(a, doppel){
+	let result = 1;
+	for(let i = a; i > 0; i -= doppel ? 2 : 1){
+		result = result * i
+	}
+	return result
+}
+
 //To-Do:
-// - Scan der Formel
+// - Scan der Formel und Priorisierung
 // - Mathematische Verarbeitung
 // - Error-Handling
 // - Ausgabe in HTML
