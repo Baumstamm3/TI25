@@ -1,0 +1,16 @@
+* {
+	font-family:  "Courier New", monospace
+}
+
+input{
+	font-size: 2rem;
+	margin: 0 0 0 3vw;
+}
+
+.symbol {
+	text-align: center;
+}
+table{
+	margin: 0 0 0 1.5vw;
+}
+

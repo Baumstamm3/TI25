@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Rechner</title>
+		<meta charset="UTF-8">
+		<script src="Rechner.js"></script>
+		<link href="Rechner.css" rel="stylesheet">
+	</head>
+	
+	<body>
+		<h1>Mathematischer Rechner</h1>
+		<form onsubmit="return acquireFormula(formula.value);" autocomplete="off">
+			<input type="text" name="formula" placeholder="Term">
+		</form>
+		<h3>Regeln zur Eingabe</h3>
+		<ul>
+			<li>Benutze folgende Zeichen zur Darstellung des gewünschten Terms:</li>
+			<!-- Ja, die Tabelle wäre die Hölle gewesen. Zum Glück gibt's Makros. -->
+			<table>
+				<tr>
+					<td>Addition</td>
+					<td>: [</td>
+					<td class="symbol"> + </td>
+					<td>] Bsp.:</td>
+					<td> a + b </td>
+				</tr>
+				<tr>
+					<td>Subtraktion</td>
+					<td>: [</td>
+					<td class="symbol"> - </td>
+					<td>] Bsp.:</td>
+					<td> a - b </td>
+				</tr>
+				<tr>
+					<td>Multiplikation</td>
+					<td>: [</td>
+					<td class="symbol"> * </td>
+					<td>] Bsp.:</td>
+					<td> a * b </td>
+				</tr>
+				<tr>
+					<td>Division</td>
+					<td>: [</td>
+					<td class="symbol"> / </td>
+					<td>] Bsp.:</td>
+					<td> a / b </td>
+				</tr>
+				<tr>
+					<td>Priorisierung</td>
+					<td>: [</td>
+					<td class="symbol"> () </td>
+					<td>] Bsp.:</td>
+					<td> (a + b) * c</td>
+				</tr>
+				<tr>
+					<td>Potenzen</td>
+					<td>: [</td>
+					<td class="symbol"> ^ </td>
+					<td>] Bsp.:</td>
+					<td> a ^ b </td>
+				</tr>
+				<tr>
+					<td>Fakultät</td>
+					<td>: [</td>
+					<td class="symbol"> ! </td>
+					<td>] Bsp.:</td>
+					<td> a! </td>
+				</tr>
+				<tr>
+					<td>Doppelte Fakultät</td>
+					<td>: [</td>
+					<td class="symbol"> !! </td>
+					<td>] Bsp.:</td>
+					<td> a!! </td>
+				</tr>
+				<tr>
+					<td>Modulo</td>
+					<td>: [</td>
+					<td class="symbol"> % </td>
+					<td>] Bsp.:</td>
+					<td> a % b </td>
+				</tr>
+				<tr>
+					<td>Kommastellen</td>
+					<td>: [</td>
+					<td class="symbol"> . </td>
+					<td>] Bsp.:</td>
+					<td> 2.5 </td>
+				</tr>
+			</table>
+			<li>Die Trennung jedes Elements durch Leerzeichen ist nicht nötig</li>
+			<li>Variablen werden nicht unterstützt.</li>
+			<li>Drücke [Enter], um die Eingabe abzusenden.</li>
+		</ul>
+	</body>
+</body>
+</html>
