@@ -10,7 +10,7 @@
 	<body>
 		<h1>Mathematischer Rechner</h1>
 		<form onsubmit="return acquireFormula(formula.value);" autocomplete="off">
-		<input type="text" name="formula" placeholder="Term">
+			<input type="text" name="formula" placeholder="Term">
 		</form>
 		<h3>Regeln zur Eingabe</h3>
 		<ul>
@@ -46,6 +46,13 @@
 					<td> a / b </td>
 				</tr>
 				<tr>
+					<td>Priorisierung</td>
+					<td>: [</td>
+					<td class="symbol"> () </td>
+					<td>] Bsp.:</td>
+					<td> (a + b) * c</td>
+				</tr>
+				<tr>
 					<td>Potenzen</td>
 					<td>: [</td>
 					<td class="symbol"> ^ </td>
@@ -60,7 +67,7 @@
 					<td> a! </td>
 				</tr>
 				<tr>
-					<td>doppelte Fakultät</td>
+					<td>Doppelte Fakultät</td>
 					<td>: [</td>
 					<td class="symbol"> !! </td>
 					<td>] Bsp.:</td>
@@ -73,9 +80,17 @@
 					<td>] Bsp.:</td>
 					<td> a % b </td>
 				</tr>
+				<tr>
+					<td>Kommastellen</td>
+					<td>: [</td>
+					<td class="symbol"> . </td>
+					<td>] Bsp.:</td>
+					<td> 2.5 </td>
+				</tr>
 			</table>
 			<li>Die Trennung jedes Elements durch Leerzeichen ist nicht nötig</li>
 			<li>Variablen werden nicht unterstützt.</li>
+			<li>Drücke [Enter], um die Eingabe abzusenden.</li>
 		</ul>
 	</body>
 </body>
