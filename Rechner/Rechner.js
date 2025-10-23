@@ -148,6 +148,7 @@ function calculate(data, idx){
 			//special case: doppelte Fakultaet
 			break
 			case "%":
+				//?!
 			break
 		}
 	}
