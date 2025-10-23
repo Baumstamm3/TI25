@@ -145,7 +145,7 @@ function calculate(data, idx){
 			//special case: DO NOT END HERE IF THERE'S MORE BEHIND
 			break
 			case "!":
-			//special case: doppelte Fakultät
+			//special case: doppelte Fakultaet
 			break
 			case "%":
 			break
