@@ -155,7 +155,7 @@ function calculate(data, idx, priority){
 			//special case: doppelte Fakultaet
 			break
 			case "%":
-				//?!
+				//Gleichwerig in der Priorisierubg zur Punktrechnung
 			break
 		}
 	}
