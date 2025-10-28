@@ -127,7 +127,7 @@ function scanData(data){
 function calculate(data, idx, priority){
 	let altMode = false
 	if( Array.isArray(data[idx])){
-		let resultBrkt = calculate(data[idx], 0)
+		let resultBrkt = calculate(data[idx], 0, priority)
 		
 	}else if( !isNaN( parseFloat( data[idx]) ) ){
 		switch(data[idx + 1]){
@@ -145,20 +145,23 @@ function calculate(data, idx, priority){
 			break
 			//Priorität 2
 			case "/":
-				return multiplication(data[idx], calculate)
+				altMode = true
 			case "*":
-			
+				return multiplication(data[idx], calculate(data, idx + 2, 2), altMode)
 			break 
 			case "%":
-			
+				return data[idx] % calculate(data, idx + 2, 2)
 			break
 			//Priorität 3
 			case "^":
-				
-			//special case: DO NOT END HERE IF THERE'S MORE STUFF BEHIND
+				return Math.pow(data[idx], data[idx + 2])
 			break
 			case "!":
-			//special case: doppelte Fakultaet
+				if(data[idx + 2] == "!"){
+					return faculty(data[idx], true)
+				}else{
+					return faculty(data[idx], false)
+				}
 			break	
 		}
 	}
