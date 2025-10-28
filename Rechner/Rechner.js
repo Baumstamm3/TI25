@@ -125,31 +125,34 @@ function scanData(data){
 }
 
 function calculate(data, idx, priority){
-	let calcResult
-	
-	
+	let altMode = false
 	if( Array.isArray(data[idx])){
 		let resultBrkt = calculate(data[idx], 0)
 		
 	}else if( !isNaN( parseFloat( data[idx]) ) ){
-		switch(data[idx]){
+		switch(data[idx + 1]){
 			default: 
 				Error("Somehow you managed to fuck up a mathematic formula!", false)
 			break
 			case undefined:
 				return data[idx]
 			break
+			//Priorität 1
 			case "-":
+				altMode = true
 			case "+":
-				
+				return addition(data[idx], calculate(data, idx + 2, 1), altMode)
 			break
-			case "*":
+			//Priorität 2
 			case "/":
-			//priority handling
+				return multiplication(data[idx], calculate)
+			case "*":
+			
 			break 
 			case "%":
-				//Gleichwerig in der Priorisierubg zur Punktrechnung
+			
 			break
+			//Priorität 3
 			case "^":
 				
 			//special case: DO NOT END HERE IF THERE'S MORE STUFF BEHIND
@@ -159,6 +162,7 @@ function calculate(data, idx, priority){
 			break	
 		}
 	}
+	
 }
 
 function addition(a, b, subtraction){
