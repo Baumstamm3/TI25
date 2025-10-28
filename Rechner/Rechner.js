@@ -147,16 +147,16 @@ function calculate(data, idx, priority){
 			case "/":
 			//priority handling
 			break 
+			case "%":
+				//Gleichwerig in der Priorisierubg zur Punktrechnung
+			break
 			case "^":
 				
 			//special case: DO NOT END HERE IF THERE'S MORE STUFF BEHIND
 			break
 			case "!":
 			//special case: doppelte Fakultaet
-			break
-			case "%":
-				//Gleichwerig in der Priorisierubg zur Punktrechnung
-			break
+			break	
 		}
 	}
 }
