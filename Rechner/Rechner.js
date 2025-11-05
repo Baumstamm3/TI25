@@ -120,7 +120,7 @@ function Error(message, symbol){
 function scanData(data){
 	let result = new CalcInfo(false, 0, 1)
 	for(let table = data; result.idx != table.length -1; table.splice(0, result.idx, result.value)){
-		let result = calculate(table, result.idx, result.prio)
+		result = calculate(table, result.idx, result.prio)
 	}
 	return result
 }
