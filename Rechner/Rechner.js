@@ -186,24 +186,26 @@ function calcPrio1(data, idx){
 
 function calcPrio2(data, idx){
 	let alternative = false
-	let result
+	//let result
 	switch(data[idx]){
 		case "/":
 			alternative = true
 		case "*":
-			result = calculate(data, idx + 1, 2)
+			let result = calculate(data, idx + 1, 2)
 			return new CalcInfo(
 				multiplication(data[idx - 1], result.value, alternative),
 				result.idx,
 				2
 			)
+		break
 		case "%":
-			result = calculate(data, idx + 1, 2)
+			let result = calculate(data, idx + 1, 2)
 			return new CalcInfo(
 				data[idx - 1] % result.value,
 				result.idx,
 				2
 			)
+		break
 		default:
 			return false
 	}
