@@ -132,21 +132,22 @@ function calculate(data, idx, priority){
 
 	}else if(data[idx] != undefined){
 		if(data[idx + 1] != undefined){
+			let result
 			switch(priority){
 				case 1:
-					let result = calcPrio1(data, idx)
+					result = calcPrio1(data, idx)
 					if(result){
 						return result
 					}
 
 				case 2:
-					let result = calcPrio2(data, idx)
+					result = calcPrio2(data, idx)
 					if(result){
 						return result
 					}
 
 				case 3:
-					let result = calcPrio3(data, idx)
+					result = calcPrio3(data, idx)
 					if(result){
 						return result
 					}
