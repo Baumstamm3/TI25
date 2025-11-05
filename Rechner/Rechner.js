@@ -7,9 +7,10 @@ class CleanInfo {
 }
 
 class CalcInfo {
-	constructor(calcValue, calcIndex){
+	constructor(calcValue, calcIndex, calcPrio){
 		this.value = calcValue
 		this.idx   = calcIndex
+		this.prio  = calcPrio
 	}
 }
 
@@ -117,11 +118,10 @@ function Error(message, symbol){
 }
 
 function scanData(data){
-	let result = calculate(data, 0, 1)
-	
-
-	
-	
+	let result = new CalcInfo(false, 0, 1)
+	for(let table = data; result.idx != table.length -1; table.splice(0, result.idx, result.value)){
+		let result = calculate(table, result.idx, result.prio)
+	}
 	return result
 }
 
@@ -136,23 +136,27 @@ function calculate(data, idx, priority){
 				case 1:
 					let result = calcPrio1(data, idx)
 					if(result){
-						return 
+						return result
 					}
 
 				case 2:
 					let result = calcPrio2(data, idx)
-					if(result.value){
-						return 
+					if(result){
+						return result
 					}
 
 				case 3:
 					let result = calcPrio3(data, idx)
 					if(result){
-						return
+						return result
 					}
 
 				default:
-					Error("Congratulations! You managed to get a faulty equation through my Cleaner. Absolutely not pissed right now...", data[idx + 1])
+					return new CalcInfo(
+						data[idx],
+						idx + 1,
+						priority
+					)
 			}
 		}else{
 			return data[idx]
@@ -169,7 +173,11 @@ function calcPrio1(data, idx){
 			alternative = true
 		case "+":
 			let result = calculate(data, idx + 1, 1)
-			return addition(data[idx - 1], result.value, alternative)
+			return new CalcInfo(
+				addition(data[idx - 1], result.value, alternative),
+				result.idx,
+				1
+			)
 		default:
 			return false
 	}
@@ -181,9 +189,19 @@ function calcPrio2(data, idx){
 		case "/":
 			alternative = true
 		case "*":
-			return multiplication(data[idx - 1], calculate(data, idx + 1, 2))
+			let result = calculate(data, idx + 1, 2)
+			return new CalcInfo(
+				multiplication(data[idx - 1], result.value, alternative),
+				result.idx,
+				2
+			)
 		case "%":
-			return data[idx - 1] % calculate(data, idx + 1, 2)
+			let result = calculate(data, idx + 1, 2)
+			return new CalcInfo(
+				data[idx - 1] % result.value,
+				result.idx,
+				2
+			)
 		default:
 			return false
 	}
@@ -192,9 +210,22 @@ function calcPrio2(data, idx){
 function calcPrio3(data, idx){
 	switch(data[idx]){
 		case "^":
-			return Math.pow(data[idx - 1], calculate(data, idx + 1, 3))
+			let result = calculate(data, idx + 1, 3)
+			return new CalcInfo(
+				Math.pow(data[idx - 1], result.value),
+				result.idx,
+				3
+			)
 		case "!":
-			return data[idx + 1] === "!" ? faculty(data[idx - 1], true) : faculty(data[idx - 1], false)
+			return data[idx + 1] === "!" ? new CalcInfo(
+				faculty(data[idx - 1], true),
+				idx + 1,
+				3
+			) : new CalcInfo(
+				faculty(data[idx - 1], false),
+				idx,
+				3
+			)
 		default:
 			return false
 	}
@@ -211,10 +242,8 @@ function multiplication(a, b, division){
 function faculty(a, doppel){
 	let result = 1;
 	for(let i = a; i > 0; i -= doppel ? 2 : 1){
-		//this could never go wrong, right?
+		//at least it's not going to cause a stack overflow...
 		result = result * i
-		//right...?! 
-		//PS: You people are friggin' lunatics
 	}
 	
 	return result
