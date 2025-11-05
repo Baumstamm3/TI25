@@ -22,7 +22,7 @@ function acquireFormula(formula){
 	
 	let formClean = sortFormula(String(formula))
 	console.log(formClean)
-	scanData(formClean)
+	console.log(scanData(formClean))
 	return false
 }
 
