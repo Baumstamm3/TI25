@@ -117,55 +117,87 @@ function Error(message, symbol){
 }
 
 function scanData(data){
-	let result = calculate(data, 0, 0)
+	let result = calculate(data, 0, 1)
 	
+
 	
 	
 	return result
 }
 
 function calculate(data, idx, priority){
-	let altMode = false
-	if( Array.isArray(data[idx])){
-		let resultBrkt = calculate(data[idx], 0, priority)
-		
-	}else if( !isNaN( parseFloat( data[idx]) ) ){
-		switch(data[idx + 1]){
-			default: 
-				Error("Somehow you managed to fuck up a mathematic formula!", false)
-			break
-			case undefined:
-				return data[idx]
-			break
-			//Priorität 1
-			case "-":
-				altMode = true
-			case "+":
-				return addition(data[idx], calculate(data, idx + 2, 1), altMode)
-			break
-			//Priorität 2
-			case "/":
-				altMode = true
-			case "*":
-				return multiplication(data[idx], calculate(data, idx + 2, 2), altMode)
-			break 
-			case "%":
-				return data[idx] % calculate(data, idx + 2, 2)
-			break
-			//Priorität 3
-			case "^":
-				return Math.pow(data[idx], data[idx + 2])
-			break
-			case "!":
-				if(data[idx + 2] == "!"){
-					return faculty(data[idx], true)
-				}else{
-					return faculty(data[idx], false)
-				}
-			break	
+	if(Array.isArray(data[idx])){
+
+		return calculate(data[idx], 0, 1)
+
+	}else if(data[idx] != undefined){
+		if(data[idx + 1] != undefined){
+			switch(priority){
+				case 1:
+					let result = calcPrio1(data, idx)
+					if(result){
+						return 
+					}
+
+				case 2:
+					let result = calcPrio2(data, idx)
+					if(result.value){
+						return 
+					}
+
+				case 3:
+					let result = calcPrio3(data, idx)
+					if(result){
+						return
+					}
+
+				default:
+					Error("Congratulations! You managed to get a faulty equation through my Cleaner. Absolutely not pissed right now...", data[idx + 1])
+			}
+		}else{
+			return data[idx]
 		}
+	}else{
+		Error("Why would you just end the equation there? I need Numbers to calculate. I can't just guess!", false)
 	}
-	
+}
+
+function calcPrio1(data, idx){
+	let alternative = false
+	switch(data[idx]){
+		case "-":
+			alternative = true
+		case "+":
+			let result = calculate(data, idx + 1, 1)
+			return addition(data[idx - 1], result.value, alternative)
+		default:
+			return false
+	}
+}
+
+function calcPrio2(data, idx){
+	let alternative = false
+	switch(data[idx]){
+		case "/":
+			alternative = true
+		case "*":
+			return multiplication(data[idx - 1], calculate(data, idx + 1, 2))
+		case "%":
+			return data[idx - 1] % calculate(data, idx + 1, 2)
+		default:
+			return false
+	}
+}
+
+function calcPrio3(data, idx){
+	switch(data[idx]){
+		case "^":
+			return Math.pow(data[idx - 1], calculate(data, idx + 1, 3))
+		case "!":
+			return data[idx + 1] === "!" ? faculty(data[idx - 1], true) : faculty(data[idx - 1], false)
+		default:
+			return false
+	}
 }
 
 function addition(a, b, subtraction){
