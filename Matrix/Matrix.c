@@ -19,10 +19,13 @@ for(int i = 0; i < sizeof(matrix2)/sizeof(matrix[0]); i++) {
 
 int transponieren(int matrix){
   int ergebnis[]
-  int length = sizeof(matrix) / sizeof(matrix[0])
+  
   for(int i = 0; i < sizeof(matrix[0]) / sizeof(matrix[0][0]); i++){
     ergebnis[i] = {}
   }
+
+  int length = sizeof(matrix) / sizeof(matrix[0])
+  
   for(int i = 0; i < length; i++){
     for(int j = 0; j < sizeof(matrix[i]) / sizeof(matrix[i][0]); j++){
       ergebnis[j][i] = matrix[i][j]
