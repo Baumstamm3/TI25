@@ -9,6 +9,12 @@ int main(){
 
 int matrix2[] = transponieren(matrix1)
   
+for(int i = 0; i < sizeof(matrix2)/sizeof(matrix[0]); i++) {
+    for(int j = 0; j < sizeof(matrix2[0])/sizeof(matrix[0][0]); j++) {
+        printf("%d ", array[i][j]);
+    }
+    printf("\n");
+} 
 }
 
 int transponieren(int matrix){
