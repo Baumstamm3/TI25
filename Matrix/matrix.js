@@ -1,6 +1,6 @@
 class Matrix {
-    constructor(){
-        this.matrix
+    constructor(array){
+        this.matrix = array
     }
 
     transpone(matrixA){
@@ -37,7 +37,7 @@ class Matrix {
     }
 
     get trans(){
-
+        return this.transpone(this.matrix)
     }
 }
 
