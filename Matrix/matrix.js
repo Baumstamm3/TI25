@@ -3,8 +3,14 @@ class Matrix {
         this.matrix = array
     }
 
-    transpone(matrixA){
-
+    static transpone(matrixA){
+        let matrixB =[]
+        for(let i = 0; i < matrixA[0].length; i++){
+            matrixB[i] = []
+            for(let j = 0; j < matrixA.length; j++){
+                matrixB[i][j] = matrixA[j][i]
+            }
+        }
     }
 
     static mul(matrixA, matrixB){
@@ -36,7 +42,7 @@ class Matrix {
         return matrixC
     }
 
-    get trans(){
+    get transpone(){
         return this.transpone(this.matrix)
     }
 }
