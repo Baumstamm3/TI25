@@ -53,4 +53,4 @@ let matrix2 = [
 ]
 
 let matrix3 = Matrix.mul(matrix1, matrix2)
-console.log(String(matrix3))
+console.log(matrix3)
