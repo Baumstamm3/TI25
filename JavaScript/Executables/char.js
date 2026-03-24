@@ -20,7 +20,4 @@ function main(){
 			gesammtanzahl++
 		}
 	}
-	
-	console.log(`Elemente n : ${n}\nElemente k : ${k}\nGesammtzahl: ${gesammtanzahl}`)
-	setTimeout(main, 1000)
 }
